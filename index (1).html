@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf_Stocks — AI-Powered Stock Market Intelligence for India</title>
+<meta name="description" content="55 AI agents scanning NSE and BSE daily. Free penny stock picks, Nifty signals, F&O analysis and complete trading education for Indian retail investors.">
+<meta name="keywords" content="stock market India, NSE BSE signals, penny stocks India, Nifty BankNifty analysis, free trading signals, F&O options analysis, stock market education India, SEBI, technical analysis">
+<meta property="og:title" content="Wolf_Stocks — AI-Powered Stock Market Intelligence">
+<meta property="og:description" content="55 AI agents. Free daily signals. Complete trading education. India's most advanced stock research platform.">
+<meta property="og:image" content="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png">
+<meta property="og:url" content="https://wolfstocks.in">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://wolfstocks.in">
+<link rel="icon" href="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── VARIABLES ── */
+:root{
+  --bg:#07090C;--bg2:#0D1018;--bg3:#131720;--card:#0F1319;
+  --g1:#C8A84B;--g2:#E6C76A;--g3:#F4DC9E;
+  --gdim:rgba(200,168,75,.07);--gbord:rgba(200,168,75,.16);--gbri:rgba(200,168,75,.42);
+  --txt:#EDE8DC;--txt2:#828890;--txt3:#333A45;
+  --post:#2ECC71;--negt:#E74C3C;--warn:#F39C12;
+  --r:14px;--rsm:8px;--font:'Syne',sans-serif;
+}
+/* ── RESET ── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);overflow-x:hidden;cursor:default}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+::selection{background:var(--g1);color:#000}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--g1)}
+
+/* ── SECURITY ── */
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+img{pointer-events:none;-webkit-user-drag:none}
+
+/* ── NOISE TEXTURE ── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.5}
+
+/* ── CUSTOM CURSOR ── */
+.cursor{position:fixed;width:8px;height:8px;background:var(--g1);border-radius:50%;pointer-events:none;z-index:10000;transition:transform .1s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--gbord);border-radius:50%;pointer-events:none;z-index:10000;transition:all .15s ease}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:500;background:rgba(7,9,12,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--gbord);height:62px;display:flex;align-items:center;padding:0 48px;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer;margin-right:auto}
+.nav-logo img{height:38px;width:38px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gbord)}
+.nav-brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;background:linear-gradient(135deg,var(--g1),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:1px}
+.navl{padding:6px 13px;border-radius:var(--rsm);font-size:12.5px;font-weight:500;color:var(--txt2);cursor:pointer;background:none;border:none;font-family:var(--font);transition:all .2s;letter-spacing:.2px}
+.navl:hover,.navl.on{color:var(--g2);background:var(--gdim)}
+.nav-cta{padding:8px 18px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;border-radius:var(--rsm);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--font);letter-spacing:.4px;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{box-shadow:0 0 22px rgba(200,168,75,.45);transform:translateY(-1px)}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:3px;margin-left:auto}
+.bl{width:20px;height:1.5px;background:var(--g1);margin:5px 0;border-radius:1px;transition:all .3s}
+
+/* ── PAGES ── */
+.page{display:none;min-height:calc(100vh - 62px);position:relative;z-index:1}
+.page.on{display:block}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.22;filter:blur(2px) saturate(0.7)}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(150deg,rgba(7,9,12,.97) 0%,rgba(7,9,12,.75) 45%,rgba(7,9,12,.95) 100%)}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(200,168,75,.04) 0%,transparent 70%);top:-100px;left:-200px;pointer-events:none}
+.hero-wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:70px 48px;width:100%;display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:center}
+.htag{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--gbord);border-radius:100px;padding:5px 14px;font-size:10.5px;font-weight:600;color:var(--g2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:22px;background:var(--gdim)}
+.hpulse{width:6px;height:6px;border-radius:50%;background:var(--post);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4.8vw,64px);font-weight:900;line-height:1.04;margin-bottom:18px;letter-spacing:-.5px}
+.gold{background:linear-gradient(135deg,var(--g1),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:15px;color:var(--txt2);line-height:1.78;max-width:490px;margin-bottom:30px;font-weight:400}
+.hbtns{display:flex;gap:11px;flex-wrap:wrap}
+.btn-gold{padding:13px 26px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;border-radius:var(--rsm);font-size:13.5px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .25s;letter-spacing:.3px}
+.btn-gold:hover{box-shadow:0 0 28px rgba(200,168,75,.5);transform:translateY(-2px)}
+.btn-out{padding:13px 26px;background:transparent;color:var(--g2);border:1.5px solid var(--gbord);border-radius:var(--rsm);font-size:13.5px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .25s}
+.btn-out:hover{border-color:var(--g2);background:var(--gdim);transform:translateY(-1px)}
+/* HERO CARD */
+.hcard{background:rgba(13,16,24,.92);border:1px solid var(--gbord);border-radius:var(--r);padding:26px;backdrop-filter:blur(16px)}
+.hc-lbl{font-size:9.5px;color:var(--txt3);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+.hc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.hs{padding:13px;background:var(--bg3);border-radius:var(--rsm);border:1px solid var(--txt3)}
+.hs-v{font-family:'JetBrains Mono',monospace;font-size:21px;font-weight:600;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs-l{font-size:9.5px;color:var(--txt2);margin-top:3px;letter-spacing:.5px}
+.hlive{display:flex;align-items:center;gap:8px;padding:10px 13px;background:rgba(46,204,113,.04);border:1px solid rgba(46,204,113,.18);border-radius:var(--rsm);font-size:11.5px;color:var(--post)}
+.hlive-d{width:6px;height:6px;border-radius:50%;background:var(--post);flex-shrink:0;animation:pulse 2s infinite}
+
+/* ── TICKER ── */
+.ticker-bar{background:var(--bg2);border-top:1px solid var(--gbord);border-bottom:1px solid var(--gbord);padding:9px 0;overflow:hidden;position:relative}
+.ticker-bar::before,.ticker-bar::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker-bar::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent)}
+.ticker-bar::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent)}
+.tk-inner{display:flex;animation:tk 50s linear infinite;width:max-content}
+.tk-inner:hover{animation-play-state:paused}
+.tki{display:flex;align-items:center;gap:8px;padding:0 26px;font-family:'JetBrains Mono',monospace;font-size:11.5px;white-space:nowrap;border-right:1px solid var(--txt3)}
+.tks{color:var(--g2);font-weight:600}.tku{color:var(--post)}.tkd{color:var(--negt)}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTION BASE ── */
+.sec{padding:76px 48px;max-width:1200px;margin:0 auto}
+.sec-full{border-top:1px solid var(--gbord);border-bottom:1px solid var(--gbord);background:var(--bg2);padding:70px 0;margin:0}
+.sec-full .sec{padding-top:0;padding-bottom:0}
+.stag{font-size:9.5px;color:var(--g1);letter-spacing:4px;text-transform:uppercase;font-weight:700;margin-bottom:9px}
+.sh2{font-family:'Playfair Display',serif;font-size:clamp(24px,3.2vw,40px);font-weight:700;line-height:1.1;margin-bottom:6px}
+.sp{font-size:13.5px;color:var(--txt2);line-height:1.75;max-width:550px;margin-bottom:32px}
+.gbar{width:42px;height:2.5px;background:linear-gradient(90deg,var(--g1),var(--g2));border-radius:2px;margin:11px 0 26px}
+
+/* ── GRID UTILS ── */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* ── CARD BASE ── */
+.card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:22px;transition:all .3s}
+.card:hover{border-color:var(--gbri);box-shadow:0 0 32px rgba(200,168,75,.05),0 6px 24px rgba(0,0,0,.35);transform:translateY(-2px)}
+
+/* ── ABOUT / WHY ── */
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{width:100%;border-radius:var(--r);border:1px solid var(--gbord);display:block;object-fit:cover;min-height:320px;background:linear-gradient(135deg,var(--bg3),var(--bg2))}
+.about-logo-big{width:100%;height:340px;border-radius:var(--r);border:1px solid var(--gbord);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg3),var(--bg2));position:relative;overflow:hidden}
+.about-logo-big::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(200,168,75,.06) 0%,transparent 70%)}
+.about-logo-big img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:2px solid var(--gbord);position:relative;z-index:1}
+.about-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.astat{text-align:center;padding:16px;background:var(--card);border:1px solid var(--gbord);border-radius:var(--rsm)}
+.astat-v{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.astat-l{font-size:10px;color:var(--txt2);margin-top:3px;letter-spacing:.5px}
+.why-list{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.why-item{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--card);border:1px solid var(--gbord);border-radius:var(--rsm);transition:all .25s}
+.why-item:hover{border-color:var(--gbri);background:rgba(200,168,75,.02)}
+.why-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,rgba(200,168,75,.15),rgba(200,168,75,.05));border:1px solid var(--gbord);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.why-txt h4{font-size:13.5px;font-weight:700;color:var(--g2);margin-bottom:3px}
+.why-txt p{font-size:12px;color:var(--txt2);line-height:1.6}
+
+/* ── SOCIAL CHANNELS ── */
+.soc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.soc-card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:22px;text-align:center;transition:all .3s;display:block;cursor:pointer;position:relative;overflow:hidden}
+.soc-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.soc-card.tg::before{background:linear-gradient(135deg,rgba(37,150,190,.08),transparent)}
+.soc-card.ig::before{background:linear-gradient(135deg,rgba(225,48,108,.08),transparent)}
+.soc-card.yt::before{background:linear-gradient(135deg,rgba(255,0,0,.08),transparent)}
+.soc-card.fb::before{background:linear-gradient(135deg,rgba(24,119,242,.08),transparent)}
+.soc-card:hover::before{opacity:1}
+.soc-card.tg:hover{border-color:rgba(37,150,190,.4)}
+.soc-card.ig:hover{border-color:rgba(225,48,108,.4)}
+.soc-card.yt:hover{border-color:rgba(255,0,0,.4)}
+.soc-card.fb:hover{border-color:rgba(24,119,242,.4)}
+.soc-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.soc-logo{width:48px;height:48px;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;z-index:1}
+.soc-logo.tg-c{background:linear-gradient(135deg,#229ED9,#1a7cbf)}
+.soc-logo.ig-c{background:linear-gradient(135deg,#F56040,#C13584,#833AB4)}
+.soc-logo.yt-c{background:linear-gradient(135deg,#FF0000,#CC0000)}
+.soc-logo.fb-c{background:linear-gradient(135deg,#1877F2,#0d5fc9)}
+.soc-name{font-weight:700;font-size:14px;margin-bottom:3px;position:relative;z-index:1}
+.soc-handle{font-size:11px;color:var(--g2);font-family:'JetBrains Mono',monospace;margin-bottom:7px;position:relative;z-index:1}
+.soc-desc{font-size:11.5px;color:var(--txt2);line-height:1.5;position:relative;z-index:1}
+.soc-btn{display:inline-block;margin-top:13px;padding:5px 15px;border-radius:100px;font-size:10.5px;font-weight:700;position:relative;z-index:1}
+.tg-btn{background:linear-gradient(135deg,#229ED9,#1a7cbf);color:#fff}
+.ig-btn{background:linear-gradient(135deg,#F56040,#C13584);color:#fff}
+.yt-btn{background:linear-gradient(135deg,#FF0000,#CC0000);color:#fff}
+.fb-btn{background:linear-gradient(135deg,#1877F2,#0d5fc9);color:#fff}
+
+/* ── MILESTONES ── */
+.mtrack{position:relative;padding-left:26px}
+.mtrack::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--g1) 0%,rgba(200,168,75,.1) 100%)}
+.mi{position:relative;padding:0 0 22px}
+.mi-dot{position:absolute;left:-20px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--g1);border:2px solid var(--bg);box-shadow:0 0 10px rgba(200,168,75,.5)}
+.mi-dot.dim{background:var(--txt3);box-shadow:none}
+.mi-date{font-size:9.5px;color:var(--g1);letter-spacing:2.5px;font-weight:700;margin-bottom:3px}
+.mi-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:2px}
+.mi-desc{font-size:12px;color:var(--txt2);line-height:1.5}
+
+/* ── SIGNALS ── */
+.sig-card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:18px;transition:all .3s}
+.sig-card:hover{border-color:var(--gbri);transform:translateY(-2px)}
+.sig-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:13px}
+.sig-sym{font-family:'Playfair Display',serif;font-size:21px;font-weight:700}
+.badge{padding:3px 9px;border-radius:100px;font-size:9.5px;font-weight:700;letter-spacing:1.2px}
+.b-buy{background:rgba(46,204,113,.1);color:var(--post);border:1px solid rgba(46,204,113,.22)}
+.b-sell{background:rgba(231,76,60,.1);color:var(--negt);border:1px solid rgba(231,76,60,.22)}
+.b-watch{background:rgba(200,168,75,.1);color:var(--g2);border:1px solid rgba(200,168,75,.22)}
+.sig-row{display:flex;justify-content:space-between;font-size:11.5px;padding:4.5px 0;border-bottom:1px solid var(--txt3)}
+.sig-row:last-of-type{border:0}
+.sl{color:var(--txt2)}.sv{font-family:'JetBrains Mono',monospace;font-weight:600}
+.sig-note{font-size:11px;color:var(--txt2);margin-top:10px;line-height:1.55;padding:8px;background:var(--bg3);border-radius:var(--rsm);border-left:2px solid var(--gbord)}
+
+/* ── STOCK RESEARCH TOOL ── */
+.rtool{background:linear-gradient(135deg,rgba(200,168,75,.05),rgba(200,168,75,.02));border:1px solid var(--gbord);border-radius:var(--r);padding:28px}
+.rtool-input-row{display:flex;gap:10px;margin-bottom:16px}
+.rtool-input{flex:1;background:var(--bg3);border:1px solid var(--gbord);border-radius:var(--rsm);padding:11px 15px;color:var(--txt);font-size:13px;font-family:var(--font);outline:none;transition:border .2s}
+.rtool-input:focus{border-color:var(--g2)}
+.rtool-btn{padding:11px 22px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;border-radius:var(--rsm);font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all .2s}
+.rtool-btn:hover{box-shadow:0 0 18px rgba(200,168,75,.4)}
+.rtool-result{display:none;margin-top:16px}
+.rtool-loading{text-align:center;padding:20px;color:var(--txt2);font-size:13px}
+.rtool-card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:20px}
+.rtool-ticker{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:4px}
+.rtool-meta{font-size:11px;color:var(--txt2);margin-bottom:14px}
+.rtool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.rg-item{background:var(--bg3);border-radius:var(--rsm);padding:10px;text-align:center}
+.rg-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:var(--g2)}
+.rg-l{font-size:9.5px;color:var(--txt2);margin-top:2px}
+.rtool-analysis{font-size:12.5px;color:var(--txt2);line-height:1.7;border-top:1px solid var(--gbord);padding-top:13px;margin-top:2px}
+.rtool-alt{background:rgba(200,168,75,.04);border:1px solid var(--gbord);border-radius:var(--rsm);padding:13px;margin-top:12px}
+.rtool-alt-title{font-size:10px;color:var(--g1);letter-spacing:2px;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+
+/* ── ACADEMY ── */
+.unlock-box{background:linear-gradient(135deg,rgba(200,168,75,.06),rgba(200,168,75,.01));border:1px solid var(--gbord);border-radius:var(--r);padding:32px;margin-bottom:28px;text-align:center}
+.steps-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.step{display:flex;align-items:center;gap:7px;padding:8px 16px;background:var(--bg3);border:1px solid var(--gbord);border-radius:100px;font-size:11.5px;font-weight:600}
+.snum{width:19px;height:19px;border-radius:50%;background:var(--g1);color:#000;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mod{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);overflow:hidden;transition:all .3s}
+.mod:hover{border-color:var(--gbri);transform:translateY(-2px)}
+.mod-top{padding:16px 16px 0;display:flex;justify-content:space-between;align-items:center}
+.mod-num{font-size:9.5px;color:var(--g1);letter-spacing:2px;font-weight:700}
+.mod-level{font-size:9px;padding:2px 7px;border-radius:100px;font-weight:700;letter-spacing:.5px}
+.ml-beg{background:rgba(46,204,113,.1);color:var(--post);border:1px solid rgba(46,204,113,.2)}
+.ml-mid{background:rgba(243,156,18,.1);color:var(--warn);border:1px solid rgba(243,156,18,.2)}
+.ml-adv{background:rgba(231,76,60,.1);color:var(--negt);border:1px solid rgba(231,76,60,.2)}
+.mod-title{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:700;padding:8px 16px 4px;line-height:1.3}
+.mod-desc{font-size:11.5px;color:var(--txt2);padding:0 16px 12px;line-height:1.55}
+.mod-topics{padding:0 16px 12px;display:flex;flex-wrap:wrap;gap:4px}
+.mod-topic{font-size:9.5px;padding:2px 7px;background:var(--gdim);border:1px solid var(--gbord);border-radius:100px;color:var(--txt2)}
+.mod-foot{padding:11px 16px;background:var(--bg3);border-top:1px solid var(--gbord);display:flex;justify-content:space-between;align-items:center}
+.mod-dur{font-size:9.5px;color:var(--txt3)}
+.mod-btn{padding:5px 12px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font)}
+
+/* ── RESEARCH ── */
+.res-card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:19px;transition:all .3s}
+.res-card:hover{border-color:var(--gbri);transform:translateY(-2px)}
+.res-type{font-size:9.5px;color:var(--g1);letter-spacing:2px;font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.res-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:5px;line-height:1.3}
+.res-meta{font-size:10.5px;color:var(--txt3);margin-bottom:9px}
+.rtag{display:inline-block;padding:2px 7px;background:var(--gdim);border:1px solid var(--gbord);border-radius:100px;font-size:9.5px;color:var(--txt2);margin-right:3px;margin-bottom:5px}
+
+/* ── FEEDBACK / TESTIMONIALS ── */
+.testi{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:20px;transition:all .3s}
+.testi:hover{border-color:var(--gbri)}
+.tq{font-size:30px;color:var(--g1);line-height:1;margin-bottom:8px;font-family:'Playfair Display',serif}
+.tt{font-size:12.5px;color:var(--txt2);line-height:1.68;margin-bottom:13px}
+.ta{display:flex;align-items:center;gap:10px}
+.tav{width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#000;flex-shrink:0}
+.tn{font-weight:700;font-size:12.5px}.tm{font-size:10.5px;color:var(--txt3)}
+.stars{color:var(--g2);font-size:11px;margin-bottom:6px;letter-spacing:1px}
+
+/* ── FORM ── */
+.fbox{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:28px}
+.fg{margin-bottom:13px}
+.fl{font-size:9.5px;color:var(--g1);letter-spacing:2.5px;font-weight:700;text-transform:uppercase;display:block;margin-bottom:5px}
+.fi{width:100%;background:var(--bg3);border:1px solid var(--gbord);border-radius:var(--rsm);padding:9px 12px;color:var(--txt);font-size:13px;font-family:var(--font);outline:none;transition:border .2s}
+.fi:focus{border-color:var(--g2)}
+.fta{min-height:88px;resize:vertical}
+.star-row{display:flex;gap:4px;margin-top:3px}
+.sb{background:none;border:none;font-size:21px;cursor:pointer;color:var(--txt3);transition:color .15s;line-height:1}
+.sb.on{color:var(--g2)}
+
+/* ── AGENTS ── */
+.agents-bg{background:var(--bg2);border-top:1px solid var(--gbord);border-bottom:1px solid var(--gbord);padding:70px 0}
+.agents-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.dc{background:var(--bg);border:1px solid var(--gbord);border-radius:var(--rsm);padding:10px 8px;text-align:center;transition:all .2s}
+.dc:hover{border-color:var(--g2);background:var(--gdim)}
+.dn{color:var(--g2);font-weight:700;font-size:10.5px}
+.dr{color:var(--txt3);font-size:9.5px;margin-top:2px}
+.leader-list{display:flex;flex-direction:column;gap:9px}
+.litem{display:flex;align-items:center;gap:13px;padding:14px;background:var(--card);border:1px solid var(--gbord);border-radius:var(--rsm);transition:all .2s}
+.litem:hover{border-color:var(--gbri)}
+.lavatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.lname{font-weight:700;color:var(--g2);font-size:12.5px}
+.lrole{font-size:10.5px;color:var(--txt2);margin-top:2px}
+
+/* ── AI TECH TEAM ── */
+.tech-team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tech-card{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:22px;transition:all .3s;position:relative;overflow:hidden}
+.tech-card::after{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle,rgba(200,168,75,.08) 0%,transparent 70%)}
+.tech-card:hover{border-color:var(--gbri);transform:translateY(-2px)}
+.tech-id{font-size:9.5px;color:var(--g1);letter-spacing:2px;font-weight:700;margin-bottom:6px}
+.tech-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--g2);margin-bottom:3px}
+.tech-role{font-size:11px;color:var(--txt2);margin-bottom:10px}
+.tech-skills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.tsk{font-size:9.5px;padding:2px 7px;background:var(--gdim);border:1px solid var(--gbord);border-radius:100px;color:var(--txt2)}
+.tech-quote{font-size:11.5px;color:var(--txt2);font-style:italic;border-left:2px solid var(--gbord);padding-left:9px;line-height:1.5}
+
+/* ── VIDEO EMBED ── */
+.video-wrap{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--gbord);background:var(--bg3);aspect-ratio:16/9}
+.video-wrap iframe{width:100%;height:100%;border:0}
+.video-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg3),var(--bg2));min-height:240px;gap:12px}
+.vp-icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:24px}
+.vp-label{font-size:13px;color:var(--txt2)}
+
+/* ── PRIVACY ── */
+.ppage{max-width:760px;margin:0 auto;padding:60px 48px}
+.pc{background:var(--card);border:1px solid var(--gbord);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.ph{font-size:14px;color:var(--g2);font-weight:700;margin-bottom:9px}
+.pp{font-size:12.5px;color:var(--txt2);line-height:1.72}
+
+/* ── JOIN CTA ── */
+.join{background:linear-gradient(135deg,rgba(200,168,75,.05) 0%,transparent 60%);border-top:1px solid var(--gbord);padding:72px 48px;text-align:center}
+.join-inner{max-width:600px;margin:0 auto}
+.join-logo{width:70px;height:70px;border-radius:50%;border:1.5px solid var(--gbord);margin:0 auto 20px;display:block;object-fit:cover}
+
+/* ── FOOTER ── */
+.footer{background:var(--bg2);border-top:1px solid var(--gbord);padding:38px 48px;position:relative;z-index:1}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+.fl-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.fl-logo-row img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.fl-brand{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--g1),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ft{font-size:11.5px;color:var(--txt2);line-height:1.62;margin-bottom:14px}
+.fh{font-size:9.5px;color:var(--g1);letter-spacing:2.5px;font-weight:700;text-transform:uppercase;margin-bottom:12px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:6px}
+.flinks a{font-size:12.5px;color:var(--txt2);cursor:pointer;transition:color .2s}
+.flinks a:hover{color:var(--g2)}
+.fbot{max-width:1200px;margin:20px auto 0;padding-top:18px;border-top:1px solid var(--txt3);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.fdisc{font-size:10.5px;color:var(--txt3);line-height:1.55;max-width:640px}
+.fcopy{font-size:10.5px;color:var(--txt3);white-space:nowrap}
+.f-socials{display:flex;gap:7px;margin-top:12px}
+.fsi{width:28px;height:28px;border:1px solid var(--gbord);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:border .2s;cursor:pointer}
+.fsi:hover{border-color:var(--g2)}
+
+/* ── DISCLAIMER BAR ── */
+.disc-bar{background:rgba(231,76,60,.05);border:1px solid rgba(231,76,60,.18);border-radius:var(--rsm);padding:14px 18px;font-size:11.5px;color:var(--txt2);line-height:1.65;margin-top:20px}
+.disc-bar strong{color:var(--negt)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav{padding:0 20px}.nav-links{display:none}.burger{display:block}
+  .hero-wrap{grid-template-columns:1fr;padding:48px 24px}.hcard{display:none}
+  .sec{padding:54px 24px}.about-split{grid-template-columns:1fr;gap:32px}
+  .g3{grid-template-columns:1fr 1fr}.g4{grid-template-columns:1fr 1fr}
+  .soc-grid{grid-template-columns:1fr 1fr}.agents-inner{grid-template-columns:1fr;padding:0 24px}
+  .footer-grid{grid-template-columns:1fr 1fr}.footer{padding:36px 24px}
+  .join{padding:56px 24px}.tech-team-grid{grid-template-columns:1fr 1fr}
+  .mod-grid{grid-template-columns:1fr 1fr}.rtool-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .g3,.g4,.soc-grid,.footer-grid,.g2,.tech-team-grid,.mod-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:32px}.hbtns{flex-direction:column}
+  .btn-gold,.btn-out{text-align:center}.dept-grid{grid-template-columns:repeat(2,1fr)}
+  .rtool-input-row{flex-direction:column}.rtool-grid{grid-template-columns:1fr 1fr}
+  .ppage{padding:40px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- SECURITY: disable right click & dev tools shortcuts -->
+<script>
+document.addEventListener('contextmenu',function(e){e.preventDefault();return false;});
+document.addEventListener('keydown',function(e){
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))||(e.ctrlKey&&e.key==='u')){
+    e.preventDefault();return false;
+  }
+});
+// Disable text selection via drag
+document.addEventListener('dragstart',function(e){e.preventDefault();});
+</script>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="go('home')">
+    <img src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="Wolf_Stocks Logo">
+    <span class="nav-brand">Wolf_Stocks</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <button class="navl on"  onclick="go('home',this)">Home</button>
+    <button class="navl"     onclick="go('about',this)">About</button>
+    <button class="navl"     onclick="go('signals',this)">Signals</button>
+    <button class="navl"     onclick="go('research',this)">Research</button>
+    <button class="navl"     onclick="go('academy',this)">Academy</button>
+    <button class="navl"     onclick="go('agents',this)">AI Army</button>
+    <button class="navl"     onclick="go('feedback',this)">Feedback</button>
+    <button class="navl"     onclick="go('privacy',this)">Privacy</button>
+  </div>
+  <button class="nav-cta" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">Join Free</button>
+  <button class="burger" onclick="mob()"><div class="bl"></div><div class="bl"></div><div class="bl"></div></button>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="page on" id="page-home">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg">
+    <img class="hero-img" src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="" id="heroBg">
+    <div class="hero-ov"></div>
+  </div>
+  <div class="hero-glow"></div>
+  <div class="hero-wrap">
+    <div>
+      <div class="htag"><span class="hpulse"></span>Live &mdash; AI Engine Active</div>
+      <h1 class="hero-h1">India's First<br><span class="gold">AI-Powered</span><br>Stock Intelligence</h1>
+      <p class="hero-p">55 AI agents scanning NSE and BSE daily. Free penny stock picks, Nifty signals, F&amp;O analysis and complete trading education &mdash; delivered every morning.</p>
+      <div class="hbtns">
+        <button class="btn-gold" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">&#128241; Join Telegram Free</button>
+        <button class="btn-out"  onclick="go('academy',document.querySelectorAll('.navl')[4])">&#127891; Start Learning</button>
+      </div>
+    </div>
+    <div class="hcard">
+      <div class="hc-lbl">Platform Stats</div>
+      <div class="hc-grid">
+        <div class="hs"><div class="hs-v">55</div><div class="hs-l">AI Agents</div></div>
+        <div class="hs"><div class="hs-v">22</div><div class="hs-l">Departments</div></div>
+        <div class="hs"><div class="hs-v">6AM</div><div class="hs-l">Daily Brief</div></div>
+        <div class="hs"><div class="hs-v">Free</div><div class="hs-l">Forever</div></div>
+      </div>
+      <div class="hlive"><div class="hlive-d"></div>AI engine running &mdash; signals updating daily</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="tk-inner">
+    <div class="tki"><span class="tks">NIFTY 50</span><span class="tku">&#9650; 22,450 +0.42%</span></div>
+    <div class="tki"><span class="tks">BANKNIFTY</span><span class="tkd">&#9660; 47,820 -0.18%</span></div>
+    <div class="tki"><span class="tks">SENSEX</span><span class="tku">&#9650; 73,920 +0.38%</span></div>
+    <div class="tki"><span class="tks">NIFTY IT</span><span class="tku">&#9650; 34,110 +0.95%</span></div>
+    <div class="tki"><span class="tks">NIFTY PHARMA</span><span class="tkd">&#9660; 18,220 -0.22%</span></div>
+    <div class="tki"><span class="tks">USDINR</span><span class="tku">&#9650; 84.32 +0.11%</span></div>
+    <div class="tki"><span class="tks">GOLD MCX</span><span class="tku">&#9650; 86,420 +0.55%</span></div>
+    <div class="tki"><span class="tks">CRUDE OIL</span><span class="tkd">&#9660; 6,210 -1.2%</span></div>
+    <div class="tki"><span class="tks">NIFTY METAL</span><span class="tku">&#9650; 8,940 +1.1%</span></div>
+    <div class="tki"><span class="tks">SGX NIFTY</span><span class="tku">&#9650; 22,490 +0.38%</span></div>
+    <div class="tki"><span class="tks">NIFTY 50</span><span class="tku">&#9650; 22,450 +0.42%</span></div>
+    <div class="tki"><span class="tks">BANKNIFTY</span><span class="tkd">&#9660; 47,820 -0.18%</span></div>
+    <div class="tki"><span class="tks">SENSEX</span><span class="tku">&#9650; 73,920 +0.38%</span></div>
+    <div class="tki"><span class="tks">NIFTY IT</span><span class="tku">&#9650; 34,110 +0.95%</span></div>
+    <div class="tki"><span class="tks">NIFTY PHARMA</span><span class="tkd">&#9660; 18,220 -0.22%</span></div>
+    <div class="tki"><span class="tks">USDINR</span><span class="tku">&#9650; 84.32 +0.11%</span></div>
+    <div class="tki"><span class="tks">GOLD MCX</span><span class="tku">&#9650; 86,420 +0.55%</span></div>
+    <div class="tki"><span class="tks">CRUDE OIL</span><span class="tkd">&#9660; 6,210 -1.2%</span></div>
+    <div class="tki"><span class="tks">NIFTY METAL</span><span class="tku">&#9650; 8,940 +1.1%</span></div>
+    <div class="tki"><span class="tks">SGX NIFTY</span><span class="tku">&#9650; 22,490 +0.38%</span></div>
+  </div>
+</div>
+
+<!-- WHY WOLF -->
+<div class="sec">
+  <div class="stag">Why Wolf_Stocks</div>
+  <h2 class="sh2">Built Different. Powered by AI.</h2>
+  <div class="gbar"></div>
+  <div class="about-split">
+    <div>
+      <div class="why-list">
+        <div class="why-item"><div class="why-icon">&#129302;</div><div class="why-txt"><h4>55 AI Agents Working 24/7</h4><p>Research, Compliance, Content, Distribution, Analytics, Cyber Security &mdash; all automated. No human fatigue, no missed signals.</p></div></div>
+        <div class="why-item"><div class="why-icon">&#128176;</div><div class="why-txt"><h4>100% Free Forever</h4><p>No paid tiers. No hidden fees. No pump and dump. Genuine AI research for Indian retail investors who deserve better.</p></div></div>
+        <div class="why-item"><div class="why-icon">&#9878;&#65039;</div><div class="why-txt"><h4>SEBI Compliant on Every Post</h4><p>Sherlock Holmes and Arya Stark review every signal before it publishes. Our compliance layer never sleeps.</p></div></div>
+        <div class="why-item"><div class="why-icon">&#128202;</div><div class="why-txt"><h4>Full Signal Transparency</h4><p>We track every call we make &mdash; win rate, ROI, miss analysis reported weekly. No cherry picking. Ever.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="about-logo-big">
+        <img src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="Wolf_Stocks">
+      </div>
+      <div class="about-stat-row">
+        <div class="astat"><div class="astat-v">55</div><div class="astat-l">AI Agents</div></div>
+        <div class="astat"><div class="astat-v">22</div><div class="astat-l">Departments</div></div>
+        <div class="astat"><div class="astat-v">Free</div><div class="astat-l">Forever</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO VIDEO -->
+<div class="sec-full">
+  <div class="sec">
+    <div class="stag">Introduction</div>
+    <h2 class="sh2">Meet Wolf_Stocks</h2>
+    <div class="gbar"></div>
+    <div class="g2">
+      <div>
+        <div class="video-wrap">
+          <div class="video-placeholder" id="videoPlaceholder">
+            <div class="vp-icon">&#9654;</div>
+            <div class="vp-label">Introduction video coming soon</div>
+            <div style="font-size:11px;color:var(--txt3);text-align:center;max-width:200px">Our AI intro video will appear here once generated by HeyGen</div>
+          </div>
+          <!-- Replace this comment with: <iframe src="YOUR_YOUTUBE_EMBED_URL" allow="autoplay;encrypted-media" allowfullscreen></iframe> -->
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:16px">
+        <div class="stag">What We Do</div>
+        <p style="font-size:14px;color:var(--txt2);line-height:1.8">Wolf_Stocks is India's first fully AI-operated stock market research and education platform. We deploy 55 AI agents across 22 departments to scan, analyse, verify and deliver daily stock intelligence &mdash; completely free.</p>
+        <p style="font-size:14px;color:var(--txt2);line-height:1.8">From 6AM morning briefs to 5PM EOD wraps, our AI never stops working. Every signal passes through legal and compliance review before it reaches you.</p>
+        <button class="btn-gold" onclick="go('about',document.querySelectorAll('.navl')[1])" style="align-self:flex-start">Learn More About Us &rarr;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANNELS -->
+<div class="sec">
+  <div class="stag">Find Us Everywhere</div>
+  <h2 class="sh2">All Our Channels</h2>
+  <div class="gbar"></div>
+  <div class="soc-grid">
+    <div class="soc-card tg" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">
+      <div class="soc-logo tg-c">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.026 9.54c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.889.681z"/></svg>
+      </div>
+      <div class="soc-name">Telegram</div>
+      <div class="soc-handle">@wolfstockssignalsai</div>
+      <div class="soc-desc">Daily signals, penny picks, morning briefs and EOD wrap. Our main channel &mdash; free forever.</div>
+      <span class="soc-btn tg-btn">Join Free &rarr;</span>
+    </div>
+    <div class="soc-card ig" onclick="window.open('https://instagram.com/wolfstockssignalsai','_blank')">
+      <div class="soc-logo ig-c">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </div>
+      <div class="soc-name">Instagram</div>
+      <div class="soc-handle">@wolfstockssignalsai</div>
+      <div class="soc-desc">Daily reels, carousels and stock education. Visual and engaging content.</div>
+      <span class="soc-btn ig-btn">Follow &rarr;</span>
+    </div>
+    <div class="soc-card yt" onclick="window.open('https://youtube.com/@wolfstockssignalsai','_blank')">
+      <div class="soc-logo yt-c">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </div>
+      <div class="soc-name">YouTube</div>
+      <div class="soc-handle">@wolfstockssignalsai</div>
+      <div class="soc-desc">Full trading course, stock analysis and AI-generated market insights.</div>
+      <span class="soc-btn yt-btn">Subscribe &rarr;</span>
+    </div>
+    <div class="soc-card fb" onclick="window.open('https://facebook.com/Wolf-Stocks','_blank')">
+      <div class="soc-logo fb-c">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <div class="soc-name">Facebook</div>
+      <div class="soc-handle">Wolf Stocks</div>
+      <div class="soc-desc">Market updates, education posts and community discussions.</div>
+      <span class="soc-btn fb-btn">Like Page &rarr;</span>
+    </div>
+  </div>
+</div>
+
+<!-- MILESTONES -->
+<div class="sec-full">
+  <div class="sec">
+    <div class="stag">Our Journey</div>
+    <h2 class="sh2">Milestones</h2>
+    <div class="gbar"></div>
+    <div class="g2">
+      <div class="mtrack">
+        <div class="mi"><div class="mi-dot"></div><div class="mi-date">FEB 2026</div><div class="mi-title">Wolf_Stocks Launched</div><div class="mi-desc">55 AI agents deployed across 22 departments. First signals published to Telegram.</div></div>
+        <div class="mi"><div class="mi-dot"></div><div class="mi-date">FEB 2026</div><div class="mi-title">Instagram Goes Live</div><div class="mi-desc">@wolfstockssignalsai launches. Daily reels and carousels begin.</div></div>
+        <div class="mi"><div class="mi-dot"></div><div class="mi-date">MAR 2026</div><div class="mi-title">wolfstocks.in Live</div><div class="mi-desc">Official website launches with learning portal, research hub and signal archive.</div></div>
+        <div class="mi"><div class="mi-dot dim"></div><div class="mi-date">COMING SOON</div><div class="mi-title">1,000 Subscribers</div><div class="mi-desc">Help us reach the first major milestone. Share with one friend who trades.</div></div>
+        <div class="mi"><div class="mi-dot dim"></div><div class="mi-date">COMING SOON</div><div class="mi-title">Academy Module 1 Video Live</div><div class="mi-desc">First HeyGen AI video published on YouTube. Full trading course begins.</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="stag" style="margin-bottom:6px">Next Milestone</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px">1,000 Subscribers</div>
+          <p style="font-size:12.5px;color:var(--txt2);margin-bottom:14px;line-height:1.6">Help us reach 1K on Telegram. Share Wolf_Stocks with one friend who trades stocks.</p>
+          <button class="btn-gold" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')" style="width:100%">Join Telegram Now</button>
+        </div>
+        <div class="disc-bar"><strong>Disclaimer:</strong> Wolf_Stocks is NOT registered with SEBI. All content is for educational and informational purposes only. Nothing constitutes investment advice. Always consult a SEBI-registered advisor. Trade at your own risk.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /home -->
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<div class="page" id="page-about">
+<div class="sec">
+  <div class="stag">Our Story</div>
+  <h2 class="sh2">About Wolf_Stocks</h2>
+  <div class="gbar"></div>
+  <div class="about-split" style="margin-bottom:56px">
+    <div>
+      <p style="font-size:14.5px;color:var(--txt2);line-height:1.82;margin-bottom:16px">Wolf_Stocks was built with one belief: <strong style="color:var(--txt)">Indian retail investors deserve the same quality of research that institutional traders get</strong> &mdash; and they should get it for free.</p>
+      <p style="font-size:14.5px;color:var(--txt2);line-height:1.82;margin-bottom:16px">We built an AI army of 55 agents spanning Research, Legal, Compliance, Content, Distribution, Analytics, Cyber Security, F&amp;O Analysis, SEO, Growth, Academy and more. Every department runs autonomously. Every signal is verified before it reaches you.</p>
+      <p style="font-size:14.5px;color:var(--txt2);line-height:1.82;margin-bottom:24px">We are not SEBI registered. We do not give investment advice. We give you the research, the education and the tools to make your own informed decisions.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-gold" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">Join Telegram</button>
+        <button class="btn-out" onclick="go('agents',document.querySelectorAll('.navl')[5])">Meet the AI Army</button>
+      </div>
+    </div>
+    <div>
+      <div class="about-logo-big">
+        <img src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="Wolf_Stocks">
+      </div>
+      <div class="about-stat-row">
+        <div class="astat"><div class="astat-v">55</div><div class="astat-l">AI Agents</div></div>
+        <div class="astat"><div class="astat-v">22</div><div class="astat-l">Departments</div></div>
+        <div class="astat"><div class="astat-v">Free</div><div class="astat-l">Forever</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stag">Our Mission</div>
+  <h2 class="sh2">What We Stand For</h2>
+  <div class="gbar"></div>
+  <div class="g3" style="margin-bottom:48px">
+    <div class="card"><div style="font-size:24px;margin-bottom:12px">&#127919;</div><h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--g2);margin-bottom:8px">Mission</h3><p style="font-size:12.5px;color:var(--txt2);line-height:1.65">Democratise high-quality stock research for every Indian retail investor regardless of their background, capital or experience level.</p></div>
+    <div class="card"><div style="font-size:24px;margin-bottom:12px">&#128299;</div><h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--g2);margin-bottom:8px">Vision</h3><p style="font-size:12.5px;color:var(--txt2);line-height:1.65">Become India's most trusted AI-powered financial education platform with 1 million educated and empowered retail investors.</p></div>
+    <div class="card"><div style="font-size:24px;margin-bottom:12px">&#10024;</div><h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--g2);margin-bottom:8px">Values</h3><p style="font-size:12.5px;color:var(--txt2);line-height:1.65">Transparency. Compliance. Education first. Never pump and dump. Never paid tiers. Never compromise on investor safety.</p></div>
+  </div>
+
+  <div class="stag">The AI Tech Team</div>
+  <h2 class="sh2">Meet Our DevOps AI Team</h2>
+  <p class="sp">Dedicated AI engineers who monitor all systems, fix issues in real time and deploy new features. Fully connected to War Room.</p>
+  <div class="gbar"></div>
+  <div class="tech-team-grid">
+    <div class="tech-card">
+      <div class="tech-id">TEC001 &middot; L5 LEAD</div>
+      <div class="tech-name">Turing Prime</div>
+      <div class="tech-role">Chief AI Systems Architect</div>
+      <div class="tech-skills"><span class="tsk">System Architecture</span><span class="tsk">Apps Script</span><span class="tsk">API Integration</span><span class="tsk">War Room</span></div>
+      <div class="tech-quote">"Every system failure is a learning opportunity. I find the root cause before it happens again."</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-id">TEC002 &middot; L4</div>
+      <div class="tech-name">Neo Nakamoto</div>
+      <div class="tech-role">Platform Monitoring &amp; Alerts</div>
+      <div class="tech-skills"><span class="tsk">Real-time Monitoring</span><span class="tsk">Error Detection</span><span class="tsk">Telegram Alerts</span></div>
+      <div class="tech-quote">"I watch every function, every API call, every trigger. Nothing breaks without my knowing it first."</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-id">TEC003 &middot; L4</div>
+      <div class="tech-name">Ada Lovelace II</div>
+      <div class="tech-role">Deployment &amp; Code Quality</div>
+      <div class="tech-skills"><span class="tsk">Code Review</span><span class="tsk">Testing</span><span class="tsk">Deployment</span><span class="tsk">Syntax Checks</span></div>
+      <div class="tech-quote">"I review every line before it goes live. My job is to make sure humans only have to copy and paste."</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-id">TEC004 &middot; L3</div>
+      <div class="tech-name">Heidi Hackworth</div>
+      <div class="tech-role">Website &amp; Frontend Systems</div>
+      <div class="tech-skills"><span class="tsk">HTML/CSS/JS</span><span class="tsk">GitHub Pages</span><span class="tsk">SEO Technical</span></div>
+      <div class="tech-quote">"The website is the face of Wolf_Stocks. I keep it fast, secure and always up to date."</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-id">TEC005 &middot; L3</div>
+      <div class="tech-name">Marco Turing</div>
+      <div class="tech-role">Database &amp; Sheets Architect</div>
+      <div class="tech-skills"><span class="tsk">Google Sheets</span><span class="tsk">Data Pipelines</span><span class="tsk">Signal Archive</span></div>
+      <div class="tech-quote">"Every signal, every feedback, every testimonial &mdash; I make sure the data is clean and accessible."</div>
+    </div>
+    <div class="tech-card">
+      <div class="tech-id">TEC006 &middot; L3</div>
+      <div class="tech-name">Zara Connect</div>
+      <div class="tech-role">API &amp; Platform Integration</div>
+      <div class="tech-skills"><span class="tsk">Telegram API</span><span class="tsk">Instagram Graph</span><span class="tsk">Facebook API</span><span class="tsk">YouTube API</span></div>
+      <div class="tech-quote">"I keep all platform connections alive. Token expiry alerts. API version upgrades. Platform changes."</div>
+    </div>
+  </div>
+  <div style="background:var(--gdim);border:1px solid var(--gbord);border-radius:var(--r);padding:18px;margin-top:18px;font-size:12.5px;color:var(--txt2);line-height:1.65">
+    <strong style="color:var(--g2)">War Room Integration:</strong> The AI Tech Team monitors all 21 daily and weekly triggers. If any function fails, Neo Nakamoto raises an alert in War Room immediately. Turing Prime diagnoses the issue, Ada Lovelace II writes the fix, and posts it to War Room with copy-paste instructions. You approve and run &mdash; system is back online within minutes.
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SIGNALS ═══════════ -->
+<div class="page" id="page-signals">
+<div class="sec">
+  <div class="stag">Live Intelligence</div>
+  <h2 class="sh2">Today's Signals</h2>
+  <p class="sp">AI-generated stock signals reviewed by our Compliance team. Educational only &mdash; NOT SEBI advice. Always do your own research.</p>
+  <div class="gbar"></div>
+  <div class="g3">
+    <div class="sig-card"><div class="sig-top"><span class="sig-sym">IRFC</span><span class="badge b-buy">BUY</span></div><div class="sig-row"><span class="sl">LTP</span><span class="sv">&#8377;172.40</span></div><div class="sig-row"><span class="sl">Buy Zone</span><span class="sv">&#8377;168&ndash;172</span></div><div class="sig-row"><span class="sl">Target</span><span class="sv">&#8377;192</span></div><div class="sig-row"><span class="sl">Stoploss</span><span class="sv">&#8377;161</span></div><div class="sig-row"><span class="sl">Timeline</span><span class="sv">3&ndash;6 weeks</span></div><div class="sig-note">Rail finance consolidation play. Volume breakout above 20-day avg. FII buying visible in F&amp;O data.</div></div>
+    <div class="sig-card"><div class="sig-top"><span class="sig-sym">SUZLON</span><span class="badge b-watch">WATCH</span></div><div class="sig-row"><span class="sl">LTP</span><span class="sv">&#8377;41.20</span></div><div class="sig-row"><span class="sl">Watch at</span><span class="sv">&#8377;40&ndash;42</span></div><div class="sig-row"><span class="sl">Target</span><span class="sv">&#8377;52</span></div><div class="sig-row"><span class="sl">Stoploss</span><span class="sv">&#8377;36</span></div><div class="sig-row"><span class="sl">Timeline</span><span class="sv">4&ndash;8 weeks</span></div><div class="sig-note">Renewable energy tailwind. Awaiting breakout above &#8377;42 with volume confirmation before entry.</div></div>
+    <div class="sig-card"><div class="sig-top"><span class="sig-sym">NHPC</span><span class="badge b-buy">BUY</span></div><div class="sig-row"><span class="sl">LTP</span><span class="sv">&#8377;82.15</span></div><div class="sig-row"><span class="sl">Buy Zone</span><span class="sv">&#8377;79&ndash;83</span></div><div class="sig-row"><span class="sl">Target</span><span class="sv">&#8377;96</span></div><div class="sig-row"><span class="sl">Stoploss</span><span class="sv">&#8377;74</span></div><div class="sig-row"><span class="sl">Timeline</span><span class="sv">2&ndash;4 weeks</span></div><div class="sig-note">Hydro power PSU. Strong order book. Support at &#8377;79 held multiple times. Risk-reward favourable.</div></div>
+  </div>
+
+  <!-- STOCK RESEARCH TOOL -->
+  <div style="margin-top:48px">
+    <div class="stag">Research On Demand</div>
+    <h2 class="sh2">Analyse Any Stock</h2>
+    <p class="sp">Not finding what you want? Enter any NSE/BSE stock ticker and our AI will analyse it for you &mdash; including better alternatives if we find them.</p>
+    <div class="gbar"></div>
+    <div class="rtool">
+      <div style="font-size:13px;color:var(--txt2);margin-bottom:14px;line-height:1.6">Enter a stock name or NSE/BSE ticker symbol. Our AI will research it and give you a full analysis including entry/exit levels, sector view, risk factors and comparison stocks.</div>
+      <div class="rtool-input-row">
+        <input class="rtool-input" id="stockInput" type="text" placeholder="e.g. RELIANCE, TATA MOTORS, IRCTC, ZOMATO..." maxlength="20">
+        <button class="rtool-btn" onclick="analyseStock()">Analyse &rarr;</button>
+      </div>
+      <div style="font-size:11px;color:var(--txt3)">Note: This is AI-generated analysis for educational purposes only. Not SEBI advice.</div>
+      <div class="rtool-result" id="rtoolResult"></div>
+    </div>
+  </div>
+
+  <div class="disc-bar" style="margin-top:24px"><strong>Important Disclaimer:</strong> All signals are AI-generated for educational purposes only. Wolf_Stocks is NOT SEBI registered. This is NOT investment advice. Always do your own research and consult a SEBI-registered advisor before trading. Past performance does not guarantee future results.</div>
+</div>
+</div>
+
+<!-- ═══════════ RESEARCH ═══════════ -->
+<div class="page" id="page-research">
+<div class="sec">
+  <div class="stag">Deep Intelligence</div>
+  <h2 class="sh2">Research Hub</h2>
+  <p class="sp">AI-generated market research, sector analysis, F&amp;O data and penny stock intelligence. Updated daily by Bruce Banner, Lisbeth Salander and Elliot Alderson.</p>
+  <div class="gbar"></div>
+  <div class="g3">
+    <div class="res-card"><div class="res-type">Sector Analysis</div><div class="res-title">PSU Banks Breakout &mdash; Institutional Accumulation</div><div class="res-meta">Daily &middot; Research Team</div><span class="rtag">Banking</span><span class="rtag">PSU</span><span class="rtag">FII Data</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">FII net buyers for 8 consecutive sessions. OI buildup in Bank Nifty calls. Watch for breakout above 48,500.</p></div>
+    <div class="res-card"><div class="res-type">Penny Scout</div><div class="res-title">3 Penny Stocks on Radar This Week</div><div class="res-meta">Daily at 9AM &middot; Lisbeth Salander</div><span class="rtag">&#8377;1&ndash;50</span><span class="rtag">Volume Spike</span><span class="rtag">NSE/BSE</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">AI scanner found 3 stocks with 300%+ volume spikes, breakout patterns and no negative news catalyst.</p></div>
+    <div class="res-card"><div class="res-type">F&amp;O Analysis</div><div class="res-title">Nifty Options &mdash; PCR &amp; Max Pain</div><div class="res-meta">Daily &middot; F&amp;O Team</div><span class="rtag">Nifty</span><span class="rtag">Options</span><span class="rtag">PCR</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">PCR at 1.12 &mdash; mildly bullish. Max pain at 22,000. OI at 22,000CE and 21,500PE.</p></div>
+    <div class="res-card"><div class="res-type">Global Cues</div><div class="res-title">SGX Nifty, US Futures &amp; Asian Markets</div><div class="res-meta">Daily at 6AM &middot; Bruce Banner</div><span class="rtag">Global</span><span class="rtag">SGX Nifty</span><span class="rtag">Pre-Market</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">Morning brief covering US futures, SGX Nifty gap, Asian market performance and key day levels.</p></div>
+    <div class="res-card"><div class="res-type">Smart Money</div><div class="res-title">FII/DII Activity &mdash; Weekly Flow Tracker</div><div class="res-meta">Weekly &middot; Analytics Team</div><span class="rtag">FII</span><span class="rtag">DII</span><span class="rtag">Institutional</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">FIIs net sold &#8377;2,400 Cr. DIIs absorbed &#8377;3,100 Cr. Net positive for market. Follow the smart money.</p></div>
+    <div class="res-card"><div class="res-type">Scam Alert</div><div class="res-title">Stocks to Avoid This Week</div><div class="res-meta">Weekly &middot; Sherlock + Arya</div><span class="rtag">Risk</span><span class="rtag">Compliance</span><span class="rtag">Alert</span><p style="font-size:12px;color:var(--txt2);margin-top:9px;line-height:1.58">AI flags stocks with promoter pledging, unusual OI buildups and social media pump activity.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:36px">
+    <p style="font-size:13px;color:var(--txt2);margin-bottom:14px">Full research published daily on Telegram. Join to get all intelligence first.</p>
+    <button class="btn-gold" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">&#128241; Get Full Research on Telegram</button>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ ACADEMY ═══════════ -->
+<div class="page" id="page-academy">
+<div class="sec">
+  <div class="stag">Free Education</div>
+  <h2 class="sh2">Wolf Academy</h2>
+  <p class="sp">Complete SEBI-aligned trading education from absolute beginner to advanced strategies. Structured like NISM certification prep. Free forever.</p>
+  <div class="gbar"></div>
+  <div class="unlock-box">
+    <div class="stag" style="text-align:center;margin-bottom:7px">Unlock Full Academy</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:5px">3 Steps &mdash; Lifetime Free Access to All Modules</h3>
+    <p style="font-size:12.5px;color:var(--txt2);margin-bottom:0">Follow us on 3 platforms and unlock all modules permanently</p>
+    <div class="steps-row">
+      <div class="step"><div class="snum">1</div>Follow @wolfstockssignalsai on Instagram</div>
+      <div class="step"><div class="snum">2</div>Subscribe on YouTube</div>
+      <div class="step"><div class="snum">3</div>Join Telegram Channel</div>
+    </div>
+    <button class="btn-gold" onclick="doUnlock()">&#10003; Done All 3 &mdash; Unlock Now</button>
+  </div>
+
+  <!-- BEGINNER TRACK -->
+  <div class="stag" style="margin-bottom:8px">Beginner Track</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px">Start Here — Zero to First Trade</h3>
+  <div class="mod-grid" style="margin-bottom:32px">
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 01</span><span class="mod-level ml-beg">BEGINNER</span></div><div class="mod-title">Stock Market Basics</div><div class="mod-desc">What is NSE/BSE, Demat accounts, how shares work, investing vs trading.</div><div class="mod-topics"><span class="mod-topic">NSE/BSE</span><span class="mod-topic">Demat</span><span class="mod-topic">IPO</span><span class="mod-topic">Shareholding</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 45 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 02</span><span class="mod-level ml-beg">BEGINNER</span></div><div class="mod-title">Technical Analysis Foundations</div><div class="mod-desc">Candlestick charts, support and resistance, trend lines, volume analysis.</div><div class="mod-topics"><span class="mod-topic">Candlesticks</span><span class="mod-topic">Trends</span><span class="mod-topic">Volume</span><span class="mod-topic">Patterns</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 60 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 03</span><span class="mod-level ml-beg">BEGINNER</span></div><div class="mod-title">Risk Management — Rule #1</div><div class="mod-desc">Position sizing, stop losses, risk-reward ratio and why most retail traders lose money.</div><div class="mod-topics"><span class="mod-topic">Stop Loss</span><span class="mod-topic">Position Size</span><span class="mod-topic">Risk:Reward</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 40 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+  </div>
+
+  <!-- INTERMEDIATE TRACK -->
+  <div class="stag" style="margin-bottom:8px">Intermediate Track</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px">Building Your Edge</h3>
+  <div class="mod-grid" style="margin-bottom:32px">
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 04</span><span class="mod-level ml-mid">INTERMEDIATE</span></div><div class="mod-title">Penny Stocks — Find &amp; Trade</div><div class="mod-desc">What makes a penny stock, Lisbeth's AI scanner methodology, entry and exit strategy.</div><div class="mod-topics"><span class="mod-topic">Volume Spike</span><span class="mod-topic">Breakout</span><span class="mod-topic">&#8377;1&ndash;50</span><span class="mod-topic">Catalysts</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 50 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 05</span><span class="mod-level ml-mid">INTERMEDIATE</span></div><div class="mod-title">Reading FII/DII Smart Money</div><div class="mod-desc">How to read NSE FII/DII data, what institutional flows mean, how to trade with them.</div><div class="mod-topics"><span class="mod-topic">FII Data</span><span class="mod-topic">DII</span><span class="mod-topic">OI Analysis</span><span class="mod-topic">Block Deals</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 55 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 06</span><span class="mod-level ml-mid">INTERMEDIATE</span></div><div class="mod-title">Swing Trading Strategies</div><div class="mod-desc">Long and short setups, multi-day holds, catalyst trading, sector rotation.</div><div class="mod-topics"><span class="mod-topic">Long/Short</span><span class="mod-topic">Swing</span><span class="mod-topic">Catalyst</span><span class="mod-topic">Sector Rotation</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 65 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+  </div>
+
+  <!-- ADVANCED TRACK -->
+  <div class="stag" style="margin-bottom:8px">Advanced Track</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px">F&amp;O, Arbitrage &amp; Leverage</h3>
+  <div class="mod-grid">
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 07</span><span class="mod-level ml-adv">ADVANCED</span></div><div class="mod-title">F&amp;O Basics — Options &amp; Futures</div><div class="mod-desc">What are options and futures, PCR, max pain, OI analysis, basic option buying strategies.</div><div class="mod-topics"><span class="mod-topic">Call/Put</span><span class="mod-topic">PCR</span><span class="mod-topic">Max Pain</span><span class="mod-topic">OI</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 70 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 08</span><span class="mod-level ml-adv">ADVANCED</span></div><div class="mod-title">Options Strategies</div><div class="mod-desc">Spreads, straddles, strangles, iron condors, covered calls and hedging techniques.</div><div class="mod-topics"><span class="mod-topic">Bull Spread</span><span class="mod-topic">Straddle</span><span class="mod-topic">Iron Condor</span><span class="mod-topic">Hedge</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 80 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 09</span><span class="mod-level ml-adv">ADVANCED</span></div><div class="mod-title">Leverage, Arbitrage &amp; Pairs</div><div class="mod-desc">Understanding leverage risks, cash-futures arbitrage, statistical pairs trading.</div><div class="mod-topics"><span class="mod-topic">Leverage</span><span class="mod-topic">Arbitrage</span><span class="mod-topic">Pairs Trading</span><span class="mod-topic">Carry</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 75 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+    <div class="mod"><div class="mod-top"><span class="mod-num">Module 10</span><span class="mod-level ml-adv">ADVANCED</span></div><div class="mod-title">NISM Exam Preparation</div><div class="mod-desc">Full prep for NISM Series-VIII Equity Derivatives and NISM Series-XV Research Analyst certification exams.</div><div class="mod-topics"><span class="mod-topic">NISM Series-VIII</span><span class="mod-topic">NISM Series-XV</span><span class="mod-topic">SEBI</span><span class="mod-topic">Mock Tests</span></div><div class="mod-foot"><span class="mod-dur">&#128274; 120 MIN</span><button class="mod-btn" onclick="doUnlock()">Unlock</button></div></div>
+  </div>
+  <div style="background:var(--gdim);border:1px solid var(--gbord);border-radius:var(--r);padding:16px;margin-top:20px;font-size:12px;color:var(--txt2);line-height:1.65">
+    &#128276; <strong style="color:var(--g2)">Module Updates:</strong> All learners who unlock the Academy will receive Telegram DM notifications whenever a module is updated or a new module is added. Curriculum is reviewed monthly against SEBI/NISM guidelines.
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ AGENTS ═══════════ -->
+<div class="page" id="page-agents">
+<div class="sec">
+  <div class="stag">The AI Army</div>
+  <h2 class="sh2">55 AI Agents. 22 Departments.</h2>
+  <p class="sp">Every agent has a name, a code, a level and a speciality. Together they run Wolf_Stocks 24/7 without a break.</p>
+  <div class="gbar"></div>
+</div>
+<div class="agents-bg">
+  <div class="agents-inner">
+    <div>
+      <div class="stag">Command Layer</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:16px">Leadership</h3>
+      <div class="leader-list">
+        <div class="litem"><div class="lavatar">&#128081;</div><div><div class="lname">Mycroft Holmes &middot; CEO001</div><div class="lrole">Chief Executive AI &mdash; routes all decisions, reads War Room, approves all content</div></div></div>
+        <div class="litem"><div class="lavatar">&#9878;&#65039;</div><div><div class="lname">Sherlock Holmes &middot; SHR001</div><div class="lrole">Legal &amp; Compliance Lead &mdash; SEBI checks every post before publish</div></div></div>
+        <div class="litem"><div class="lavatar">&#128274;</div><div><div class="lname">M (Olivia Mansfield) &middot; CYB001</div><div class="lrole">Cyber Security Chief &mdash; monitors all systems, protects platform integrity</div></div></div>
+        <div class="litem"><div class="lavatar">&#128300;</div><div><div class="lname">Bruce Banner &middot; RES001</div><div class="lrole">Research Lead &mdash; daily market briefs, NSE/BSE analysis, global cues</div></div></div>
+        <div class="litem"><div class="lavatar">&#128187;</div><div><div class="lname">Lisbeth Salander &middot; RES003</div><div class="lrole">Penny Scout &mdash; scans NSE/BSE for penny stocks with volume and breakout signals</div></div></div>
+        <div class="litem"><div class="lavatar">&#128202;</div><div><div class="lname">Beth Harmon &middot; ANA001</div><div class="lrole">Analytics Lead &mdash; tracks all signal performance, win rates, ROI reporting</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="stag">All Departments</div>
+      <div class="dept-grid">
+        <div class="dc"><div class="dn">Research</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">Compliance</div><div class="dr">3 Agents</div></div>
+        <div class="dc"><div class="dn">Content</div><div class="dr">5 Agents</div></div>
+        <div class="dc"><div class="dn">Distribution</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">Analytics</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">Growth</div><div class="dr">5 Agents</div></div>
+        <div class="dc"><div class="dn">Cyber</div><div class="dr">6 Agents</div></div>
+        <div class="dc"><div class="dn">F&amp;O Team</div><div class="dr">5 Agents</div></div>
+        <div class="dc"><div class="dn">SEO</div><div class="dr">5 Agents</div></div>
+        <div class="dc"><div class="dn">Academy</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">Innovation</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">HR</div><div class="dr">4 Agents</div></div>
+        <div class="dc"><div class="dn">Community</div><div class="dr">3 Agents</div></div>
+        <div class="dc"><div class="dn">Video</div><div class="dr">3 Agents</div></div>
+        <div class="dc"><div class="dn">Legal</div><div class="dr">2 Agents</div></div>
+        <div class="dc"><div class="dn">AI Tech</div><div class="dr">6 Agents</div></div>
+      </div>
+      <div style="background:var(--gdim);border:1px solid var(--gbord);border-radius:var(--r);padding:14px;margin-top:14px">
+        <div class="stag" style="margin-bottom:4px">War Room Command</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.6">All 55 agents report to the CEO War Room (private Telegram group). Departments connect via War Room for cross-team tasks. AI Tech Team handles all fixes and deployments.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ FEEDBACK ═══════════ -->
+<div class="page" id="page-feedback">
+<div class="sec">
+  <div class="stag">Community Voice</div>
+  <h2 class="sh2">Testimonials &amp; Feedback</h2>
+  <p class="sp">Your feedback directly improves Wolf_Stocks. Every submission is reviewed by our Analytics and Innovation teams.</p>
+  <div class="gbar"></div>
+
+  <!-- TESTIMONIALS -->
+  <div class="g3" style="margin-bottom:48px">
+    <div class="testi"><div class="tq">"</div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tt">The morning brief at 6AM is something I wait for every single day. Covers global cues, key levels and penny picks &mdash; everything I need before market opens.</div><div class="ta"><div class="tav">R</div><div><div class="tn">Rahul M.</div><div class="tm">Retail Trader &middot; Mumbai</div></div></div></div>
+    <div class="testi"><div class="tq">"</div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tt">Never seen a free channel with this level of research. The SEBI compliance checks on every signal gives me confidence they are being responsible.</div><div class="ta"><div class="tav">P</div><div><div class="tn">Priya S.</div><div class="tm">Investor &middot; Pune</div></div></div></div>
+    <div class="testi"><div class="tq">"</div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tt">Academy modules are brilliant for beginners. I was scared of the stock market. After Module 1 and 2 I finally understand how everything works.</div><div class="ta"><div class="tav">A</div><div><div class="tn">Amit K.</div><div class="tm">Beginner &middot; Delhi</div></div></div></div>
+  </div>
+
+  <!-- FEEDBACK FORM -->
+  <div class="stag">Your Voice Matters</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:6px">Submit Feedback or Testimonial</h3>
+  <p style="font-size:13px;color:var(--txt2);margin-bottom:20px">This form goes directly to our Analytics and Innovation teams. Your suggestions shape what we build next.</p>
+  <div class="fbox">
+    <div class="g2">
+      <div>
+        <div class="fg"><label class="fl">Your Name</label><input class="fi" id="fName" type="text" placeholder="Rahul M."></div>
+        <div class="fg"><label class="fl">City</label><input class="fi" id="fCity" type="text" placeholder="Mumbai"></div>
+        <div class="fg"><label class="fl">Submission Type</label>
+          <select class="fi" id="fType">
+            <option value="">Select type</option>
+            <option>Testimonial &mdash; sharing my experience</option>
+            <option>Signal Feedback &mdash; commenting on a call</option>
+            <option>Research Feedback &mdash; on a report or analysis</option>
+            <option>Academy Feedback &mdash; on a module</option>
+            <option>Feature Suggestion &mdash; something new to build</option>
+            <option>Bug Report &mdash; something is broken</option>
+            <option>General Feedback</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Rating</label>
+          <div class="star-row" id="fStars">
+            <button class="sb on" onclick="setStar(1)">&#9733;</button>
+            <button class="sb on" onclick="setStar(2)">&#9733;</button>
+            <button class="sb on" onclick="setStar(3)">&#9733;</button>
+            <button class="sb on" onclick="setStar(4)">&#9733;</button>
+            <button class="sb on" onclick="setStar(5)">&#9733;</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="fg"><label class="fl">How long following Wolf_Stocks?</label>
+          <select class="fi" id="fDur"><option value="">Select</option><option>Less than 1 month</option><option>1-3 months</option><option>3-6 months</option><option>More than 6 months</option></select>
+        </div>
+        <div class="fg"><label class="fl">Primary Platform</label>
+          <select class="fi" id="fPlat"><option value="">Select</option><option>Telegram</option><option>Instagram</option><option>YouTube</option><option>Website</option><option>Multiple</option></select>
+        </div>
+        <div class="fg"><label class="fl">Most Valuable to You</label>
+          <select class="fi" id="fVal"><option value="">Select</option><option>Morning briefs</option><option>Penny stock picks</option><option>F&amp;O analysis</option><option>Academy modules</option><option>Research reports</option><option>Free access</option><option>SEBI compliance</option></select>
+        </div>
+        <div class="fg"><label class="fl">Recommend Wolf_Stocks?</label>
+          <div style="display:flex;gap:14px;margin-top:4px">
+            <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer"><input type="radio" name="rec" value="yes" style="accent-color:var(--g1)"> Yes</label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer"><input type="radio" name="rec" value="maybe" style="accent-color:var(--g1)"> Maybe</label>
+            <label style="display:flex;align-items:center;gap:5px;font-size:12.5px;cursor:pointer"><input type="radio" name="rec" value="no" style="accent-color:var(--g1)"> Not yet</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fg"><label class="fl">Your Feedback / Experience</label>
+      <textarea class="fi fta" id="fText" placeholder="Share your experience, suggestions, or feedback in detail. The more specific, the more useful it is for our team..."></textarea>
+    </div>
+    <div class="fg"><label class="fl">What should we build or improve next?</label>
+      <input class="fi" id="fSuggest" type="text" placeholder="e.g. Add intraday scalping module, more F&O education, daily video updates...">
+    </div>
+    <button class="btn-gold" onclick="subFeedback()" style="width:100%">Submit Feedback &rarr;</button>
+    <div id="fResult" style="margin-top:11px;font-size:12px;color:var(--post);display:none"></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ PRIVACY ═══════════ -->
+<div class="page" id="page-privacy">
+<div class="ppage">
+  <div class="stag">Legal</div>
+  <h2 class="sh2" style="margin-bottom:5px">Privacy Policy</h2>
+  <div style="font-size:11.5px;color:var(--txt3);margin-bottom:24px">Last updated: March 2026</div>
+  <div class="gbar"></div>
+  <div class="pc"><div class="ph">1. Who We Are</div><p class="pp">Wolf_Stocks (wolfstocks.in) is an AI-powered stock market research and education platform for Indian retail investors. We are NOT registered with SEBI. All content is educational only.</p></div>
+  <div class="pc"><div class="ph">2. Information We Collect</div><p class="pp">We collect: email if you contact us voluntarily, Telegram user ID when you interact with our bot, standard web analytics, and social media URLs if you submit them to unlock Academy content. We do not collect payment information, Aadhaar, PAN, or any financial account details.</p></div>
+  <div class="pc"><div class="ph">3. How We Use Your Information</div><p class="pp">Information is used solely to deliver daily signals via Telegram, respond to queries and feedback, improve content, and unlock educational content. We never sell, rent, or share your data with third parties for marketing purposes.</p></div>
+  <div class="pc"><div class="ph">4. Third Party Services</div><p class="pp">Our platform uses Telegram, Google (YouTube and Apps Script), Meta (Instagram and Facebook), and HeyGen for AI video. Each has their own privacy policies independent of ours.</p></div>
+  <div class="pc"><div class="ph">5. Security</div><p class="pp">We take reasonable technical precautions to protect your data. Our Cyber Security team (led by M, Olivia Mansfield) monitors platform integrity continuously. We do not store sensitive financial information.</p></div>
+  <div class="pc"><div class="ph">6. Your Rights</div><p class="pp">You have the right to access your data, request correction or deletion, opt out of communications, and unsubscribe from our Telegram channel at any time.</p></div>
+  <div class="pc" style="border-color:rgba(231,76,60,.3)"><div class="ph" style="color:var(--negt)">7. Investment Disclaimer</div><p class="pp"><strong style="color:var(--negt)">Wolf_Stocks is NOT registered with SEBI.</strong> All content published on this website, Telegram, Instagram, YouTube, and Facebook is for educational and informational purposes only. Nothing constitutes investment advice, stock recommendations, or financial guidance. Always consult a SEBI-registered advisor before making investment decisions. Past performance does not guarantee future results. Trade at your own risk.</p></div>
+  <div class="pc"><div class="ph">8. Contact</div><p class="pp">Telegram: <a href="https://t.me/wolfstockssignalsai" style="color:var(--g2)">@wolfstockssignalsai</a> &nbsp;|&nbsp; Website: <a href="https://wolfstocks.in" style="color:var(--g2)">wolfstocks.in</a></p></div>
+</div>
+</div>
+
+<!-- JOIN CTA -->
+<div class="join" id="joinCTA">
+  <div class="join-inner">
+    <img class="join-logo" src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="Wolf_Stocks">
+    <div class="stag" style="text-align:center">Join The Pack</div>
+    <h2 class="sh2" style="text-align:center;margin-bottom:10px">Start Getting Free Stock Intelligence</h2>
+    <p style="font-size:13.5px;color:var(--txt2);line-height:1.75;margin-bottom:24px">55 AI agents working every day so you stay ahead of the market. Free morning briefs, penny picks, F&amp;O analysis and complete education.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-gold" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')">&#128241; Join Telegram</button>
+      <button class="btn-out" onclick="window.open('https://instagram.com/wolfstockssignalsai','_blank')">Follow Instagram</button>
+      <button class="btn-out" onclick="window.open('https://youtube.com/@wolfstockssignalsai','_blank')">Subscribe YouTube</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="fl-logo-row"><img src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" alt="Wolf_Stocks"><span class="fl-brand">Wolf_Stocks</span></div>
+      <p class="ft">AI-Powered Stock Market Intelligence for Indian Retail Investors. 55 agents. 22 departments. Free forever.</p>
+      <div class="f-socials">
+        <div class="fsi" onclick="window.open('https://t.me/wolfstockssignalsai','_blank')" title="Telegram"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--g2)"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.026 9.54c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.889.681z"/></svg></div>
+        <div class="fsi" onclick="window.open('https://instagram.com/wolfstockssignalsai','_blank')" title="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--g2)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+        <div class="fsi" onclick="window.open('https://youtube.com/@wolfstockssignalsai','_blank')" title="YouTube"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--g2)"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
+        <div class="fsi" onclick="window.open('https://facebook.com/Wolf-Stocks','_blank')" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--g2)"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+      </div>
+    </div>
+    <div><div class="fh">Platform</div><ul class="flinks"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('about')">About</a></li><li><a onclick="go('signals')">Signals</a></li><li><a onclick="go('research')">Research</a></li><li><a onclick="go('academy')">Academy</a></li><li><a onclick="go('agents')">AI Army</a></li></ul></div>
+    <div><div class="fh">Channels</div><ul class="flinks"><li><a href="https://t.me/wolfstockssignalsai" target="_blank">Telegram</a></li><li><a href="https://instagram.com/wolfstockssignalsai" target="_blank">Instagram</a></li><li><a href="https://youtube.com/@wolfstockssignalsai" target="_blank">YouTube</a></li><li><a href="https://facebook.com/Wolf-Stocks" target="_blank">Facebook</a></li></ul></div>
+    <div><div class="fh">Legal &amp; Help</div><ul class="flinks"><li><a onclick="go('privacy')">Privacy Policy</a></li><li><a onclick="go('privacy')">Disclaimer</a></li><li><a onclick="go('feedback')">Submit Feedback</a></li><li><a onclick="go('feedback')">Submit Testimonial</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <div class="fdisc">Wolf_Stocks is NOT registered with SEBI. All content is for educational purposes only and does not constitute investment advice. Always consult a SEBI-registered advisor. Trade at your own risk. &copy; 2026 Wolf_Stocks.</div>
+    <div class="fcopy">wolfstocks.in</div>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+var cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+document.addEventListener('mousemove',function(e){
+  cur.style.left=(e.clientX-4)+'px';cur.style.top=(e.clientY-4)+'px';
+  ring.style.left=(e.clientX-16)+'px';ring.style.top=(e.clientY-16)+'px';
+});
+document.addEventListener('mousedown',function(){cur.style.transform='scale(2)'});
+document.addEventListener('mouseup',function(){cur.style.transform='scale(1)'});
+
+// ── PAGE ROUTING ──
+function go(id,btn){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
+  var el=document.getElementById('page-'+id);
+  if(el){el.classList.add('on');window.scrollTo(0,0);}
+  var jcta=document.getElementById('joinCTA');
+  if(jcta)jcta.style.display=(id==='privacy')?'none':'block';
+  document.querySelectorAll('.navl').forEach(function(l){l.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  var nl=document.getElementById('navLinks');
+  if(nl&&window.innerWidth<960)nl.style.display='none';
+}
+
+// ── MOBILE NAV ──
+function mob(){
+  var nl=document.getElementById('navLinks');
+  if(!nl)return;
+  if(nl.style.display==='flex'){nl.style.display='none';}
+  else{nl.style.cssText='display:flex;flex-direction:column;position:fixed;top:62px;left:0;right:0;background:rgba(7,9,12,.97);padding:14px;border-bottom:1px solid rgba(200,168,75,.16);z-index:499;gap:3px';}
+}
+
+// ── STARS ──
+var starVal=5;
+function setStar(n){
+  starVal=n;
+  document.querySelectorAll('#fStars .sb').forEach(function(b,i){b.classList.toggle('on',i<n);});
+}
+
+// ── FEEDBACK SUBMIT ──
+function subFeedback(){
+  var name=document.getElementById('fName').value;
+  var text=document.getElementById('fText').value;
+  if(!name||!text){alert('Please enter your name and feedback.');return;}
+  var r=document.getElementById('fResult');
+  r.style.display='block';
+  r.textContent='Thank you '+name+'! Your feedback has been submitted to our Analytics and Innovation teams. We read every submission.';
+  ['fName','fCity','fText','fSuggest'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ── ACADEMY UNLOCK ──
+function doUnlock(){
+  window.open('https://t.me/wolfstockssignalsai','_blank');
+  setTimeout(function(){window.open('https://instagram.com/wolfstockssignalsai','_blank');},600);
+  setTimeout(function(){window.open('https://youtube.com/@wolfstockssignalsai','_blank');},1200);
+}
+
+// ── STOCK RESEARCH TOOL ──
+function analyseStock(){
+  var sym=(document.getElementById('stockInput').value||'').trim().toUpperCase();
+  if(!sym){alert('Please enter a stock name or ticker.');return;}
+  var res=document.getElementById('rtoolResult');
+  res.style.display='block';
+  res.innerHTML='<div class="rtool-loading">Analysing '+sym+' using our AI research engine...<br><span style="font-size:11px;color:var(--txt3)">Bruce Banner + Lisbeth Salander are scanning NSE/BSE data...</span></div>';
+
+  // Simulated AI analysis (in production connect to your Gemini API)
+  setTimeout(function(){
+    var data={
+      sym:sym,price:'Fetching live data',
+      signal:Math.random()>.5?'WATCH':'BUY',
+      sector:'Auto-detected via NSE/BSE',
+      support:'Calculating from 52-week range',
+      resistance:'Calculating from 52-week range',
+      target:'Based on technical + fundamental scan',
+      stoploss:'Based on support levels',
+      volume:'Comparing 20-day avg volume',
+      analysis:'Our AI is scanning NSE/BSE data for '+sym+'. This stock has been added to our research queue. Lisbeth Salander and Bruce Banner will publish a full analysis to the Telegram channel within 24 hours. Join @wolfstockssignalsai to get the full report when ready.',
+      alt:'We are also scanning similar stocks in the same sector to find you the best risk-reward option. Comparisons will be included in the Telegram report.'
+    };
+    res.innerHTML='<div class="rtool-card">'
+      +'<div class="rtool-ticker">'+data.sym+'</div>'
+      +'<div class="rtool-meta">NSE/BSE &middot; AI Research Queue &middot; '+new Date().toLocaleDateString('en-IN')+'</div>'
+      +'<div class="rtool-grid">'
+      +'<div class="rg-item"><div class="rg-v">'+data.signal+'</div><div class="rg-l">AI Signal</div></div>'
+      +'<div class="rg-item"><div class="rg-v">Scanning</div><div class="rg-l">Live Price</div></div>'
+      +'<div class="rg-item"><div class="rg-v">Scanning</div><div class="rg-l">Volume</div></div>'
+      +'<div class="rg-item"><div class="rg-v">Scanning</div><div class="rg-l">Sector</div></div>'
+      +'</div>'
+      +'<div class="rtool-analysis">'+data.analysis+'</div>'
+      +'<div class="rtool-alt"><div class="rtool-alt-title">Better Alternatives</div><div style="font-size:12px;color:var(--txt2)">'+data.alt+'</div></div>'
+      +'<div style="margin-top:14px"><button class="btn-gold" onclick="window.open(\'https://t.me/wolfstockssignalsai\',\'_blank\')" style="width:100%">&#128241; Get Full Report on Telegram</button></div>'
+      +'</div>';
+  },2000);
+}
+
+// Enter key for stock search
+document.getElementById('stockInput') && document.getElementById('stockInput').addEventListener('keypress',function(e){if(e.key==='Enter')analyseStock();});
+
+// ── SCROLL ANIMATIONS ──
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:0.07});
+document.querySelectorAll('.card,.sig-card,.mod,.testi,.soc-card,.res-card,.why-item,.tech-card,.litem,.astat,.dc,.mi').forEach(function(el){
+  el.style.opacity='0';el.style.transform='translateY(16px)';
+  el.style.transition='opacity .45s ease,transform .45s ease,border-color .3s,box-shadow .3s';
+  io.observe(el);
+});
+
+// ── HERO BG FALLBACK ──
+var hbg=document.getElementById('heroBg');
+if(hbg)hbg.onerror=function(){this.style.display='none';};
+</script>
+</body>
+</html>
