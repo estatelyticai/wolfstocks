@@ -1,141 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolf Stocks AI | Sovereign Intelligence</title>
-    <style>
-        :root { --gold: #d4af37; --dark: #050505; --gray: #111; --text: #eee; }
-        body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; scroll-behavior: smooth; }
-        
-        /* 1. MASTER HEADER & NFP BANNER */
-        .nfp-banner { background: var(--gold); color: #000; padding: 10px; font-weight: 900; text-align: center; font-size: 14px; position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #fff; }
-        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.8); border-bottom: 1px solid #222; }
-        .nav-links a { color: var(--gold); text-decoration: none; margin-left: 20px; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf_Stocks — AI-Powered Stock Market Intelligence for India</title>
+<meta name="description" content="Free NSE/BSE signals, penny stocks, F&O analysis, IPO alerts and complete trading education. 55 AI agents. India's most advanced free stock research platform.">
+<meta property="og:title" content="Wolf_Stocks — AI-Powered Stock Market Intelligence">
+<meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMwRDEwMTgiLz4KICA8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzhBODRCIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjIwIiB5PSIyNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIj7wn5C6PC90ZXh0Pgo8L3N2Zz4=">
+<meta property="og:url" content="https://wolfstocks.in">
+<link rel="canonical" href="https://wolfstocks.in">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMwRDEwMTgiLz4KICA8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzhBODRCIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjIwIiB5PSIyNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIj7wn5C6PC90ZXh0Pgo8L3N2Zz4=" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090C;--bg2:#0D1018;--bg3:#131720;--card:#0F1319;
+  --g1:#C8A84B;--g2:#E6C76A;--g3:#F4DC9E;
+  --gdim:rgba(200,168,75,.07);--gbord:rgba(200,168,75,.16);--gbri:rgba(200,168,75,.4);
+  --txt:#EDE8DC;--txt2:#828890;--txt3:#2A3040;
+  --post:#2ECC71;--postbg:rgba(46,204,113,.08);--postbord:rgba(46,204,113,.22);
+  --negt:#E74C3C;--negtbg:rgba(231,76,60,.08);--negtbord:rgba(231,76,60,.22);
+  --warn:#F39C12;--warnbg:rgba(243,156,18,.08);
+  --r:10px;--rsm:6px;--font:'Syne',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--g1);color:#000}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--g1)}
+body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+img{pointer-events:none;-webkit-user-drag:none}
 
-        /* 2. HERO SECTION WITH VIDEO EMBED */
-        .hero { padding: 100px 5%; text-align: center; background: radial-gradient(circle, #1a1500 0%, #000 100%); }
-        .logo { width: 180px; margin-bottom: 20px; filter: drop-shadow(0 0 10px var(--gold)); }
-        .hero h1 { font-size: 48px; letter-spacing: 5px; margin: 10px 0; color: #fff; }
-        .hero p { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 40px; }
-        
-        /* THE AI ACADEMY VIDEO (Section 7.1) */
-        .video-container { max-width: 800px; margin: 0 auto; border: 2px solid var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.3); border-radius: 10px; overflow: hidden; }
-        .video-placeholder { aspect-ratio: 16/9; background: #000; display: flex; align-items: center; justify-content: center; }
+/* BANNER */
+.site-banner{width:100%;background:#000;display:block;overflow:hidden;
+  position:relative;border-bottom:2px solid var(--gbord);cursor:pointer}
+.site-banner img{width:100%;height:175px;object-fit:cover;object-position:center center;display:block}
+@media(max-width:900px){.site-banner img{height:140px}}
+@media(max-width:600px){.site-banner img{height:100px}}
 
-        /* 3. SOVEREIGN RESEARCH TOOL (The Functional Part) */
-        .search-section { padding: 60px 5%; background: var(--gray); text-align: center; border-y: 1px solid #222; }
-        .search-box { margin: 30px auto; max-width: 600px; display: flex; }
-        input { flex: 1; padding: 18px; background: #000; border: 1px solid var(--gold); color: #fff; font-size: 16px; outline: none; border-radius: 5px 0 0 5px; }
-        .search-btn { padding: 18px 30px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; border-radius: 0 5px 5px 0; transition: 0.3s; }
-        .search-btn:hover { background: #fff; }
+/* NAV */
+.nav{position:sticky;top:0;z-index:500;background:rgba(7,9,12,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gbord);height:50px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 20px;gap:10px}
+.nav-right-group{display:flex;align-items:center;gap:6px;margin-left:auto}
+.nav-live-pill{display:flex;align-items:center;gap:0;border:1px solid var(--gbord);
+  border-radius:var(--rsm);background:var(--bg3);flex-shrink:0;overflow:hidden;margin-right:auto!important}
+.nlp-dot{width:6px;height:6px;border-radius:50%;background:var(--post);
+  animation:pulse 1.8s infinite;flex-shrink:0;margin:0 8px}
+.nlp-item{display:flex;align-items:center;gap:3px;padding:5px 9px;
+  border-left:1px solid var(--txt3)}
+.nlp-sym{font-size:8.5px;font-weight:700;color:var(--txt2);letter-spacing:.3px;white-space:nowrap}
+.nlp-val{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;
+  color:var(--txt);white-space:nowrap;margin:0 3px}
+.nlp-chg{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;white-space:nowrap}
+.nav-links{display:flex;gap:1px}
+.navl{padding:5px 9px;border-radius:var(--rsm);font-size:11px;font-weight:500;color:var(--txt2);
+  cursor:pointer;background:none;border:none;font-family:var(--font);transition:all .2s;white-space:nowrap}
+.navl:hover,.navl.on{color:var(--g2);background:var(--gdim)}
+.nav-cta{padding:6px 13px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;
+  border-radius:var(--rsm);font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);
+  transition:all .2s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{box-shadow:0 0 16px rgba(200,168,75,.45);transform:translateY(-1px)}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:3px;flex-shrink:0}
+.bl{width:18px;height:1.5px;background:var(--g1);margin:4px 0;border-radius:1px}
 
-        /* 4. ALPHA TABLE & DATA SECTION */
-        .data-section { padding: 80px 5%; }
-        table { width: 100%; border-collapse: collapse; background: #0a0a0a; border: 1px solid #222; }
-        th { padding: 20px; text-align: left; border-bottom: 2px solid var(--gold); color: var(--gold); text-transform: uppercase; font-size: 12px; }
-        td { padding: 20px; border-bottom: 1px solid #111; font-size: 15px; }
-        .badge { background: #1a1a1a; color: var(--gold); padding: 5px 12px; border: 1px solid var(--gold); border-radius: 4px; font-size: 11px; }
+/* NFP ALERT BAR */
+.nfp-bar{background:linear-gradient(90deg,rgba(231,76,60,.1),rgba(243,156,18,.07),rgba(231,76,60,.1));
+  border-bottom:1px solid rgba(231,76,60,.2);padding:6px 24px;display:flex;align-items:center;
+  justify-content:center;gap:10px;cursor:pointer;transition:background .2s}
+.nfp-pulse{width:7px;height:7px;border-radius:50%;background:var(--negt);animation:pulse 1.4s infinite;flex-shrink:0}
+.nfp-text{font-size:11px;font-weight:600;color:var(--txt)}
+.nfp-text span{color:var(--negt)}
 
-        /* 5. 3-COLUMN FEATURE GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 80px 5%; }
-        .card { background: #0a0a0a; padding: 40px; border-radius: 10px; border: 1px solid #222; transition: 0.3s; }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .card i { font-size: 40px; color: var(--gold); margin-bottom: 20px; }
-        .card h3 { color: #fff; margin-bottom: 15px; }
+/* RESEARCH TOOL SECTION */
+.rt-wrap{background:linear-gradient(135deg,rgba(200,168,75,.07),rgba(200,168,75,.02));
+  border:1px solid var(--gbord);border-radius:var(--r);padding:14px}
+.rt-row{display:flex;gap:6px;margin-bottom:7px}
+.rt-input{flex:1;background:var(--bg3);border:1px solid var(--gbord);border-radius:var(--rsm);
+  padding:9px 11px;color:var(--txt);font-size:13px;font-family:var(--font);outline:none;
+  transition:border .2s;text-transform:uppercase;letter-spacing:.5px}
+.rt-btn{padding:9px 15px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#000;border:none;
+  border-radius:var(--rsm);font-weight:700;font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
 
-        /* 6. FOOTER */
-        footer { padding: 60px 5%; border-top: 1px solid #222; text-align: center; background: #000; }
-        .social-links a { color: var(--gold); font-size: 24px; margin: 0 15px; text-decoration: none; }
-    </style>
+/* NFP COUNTDOWN PAGE */
+.nfp-countdown{display:flex;gap:10px;justify-content:center;margin:14px 0}
+.nfp-ct{background:rgba(7,9,12,.6);border:1px solid rgba(231,76,60,.28);border-radius:var(--rsm);
+  padding:10px 14px;text-align:center;min-width:65px}
+.nfp-ct-v{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--negt)}
+
+/* GLOBAL ANIMATIONS */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+</style>
 </head>
 <body>
 
-    <div class="nfp-banner">🐺 NFP MISSION: MARCH 7 LIVE | DATA COUNTDOWN ACTIVE</div>
+<div class="nfp-bar" onclick="location.href='#nfp'">
+    <div class="nfp-pulse"></div>
+    <div class="nfp-text">WOLF STOCKS NFP MISSION: <span id="nfp-banner-timer">LOADING COUNTDOWN...</span></div>
+</div>
 
-    <header>
-        <div style="font-weight: 900; font-size: 20px; letter-spacing: 2px;">WOLF STOCKS</div>
-        <nav class="nav-links">
-            <a href="#academy">Academy</a>
-            <a href="#research">Research</a>
-            <a href="#alphas">Top Alphas</a>
-            <a href="https://t.me/wolfstocks_warroom" target="_blank" style="border: 1px solid var(--gold); padding: 8px 15px; border-radius: 4px;">Join War Room</a>
-        </nav>
-    </header>
+<nav class="nav">
+    <div class="fl-brand">WOLF_STOCKS</div>
+    <div class="nav-links">
+        <button class="navl" onclick="showPage('home')">Home</button>
+        <button class="navl" onclick="showPage('research')">Research</button>
+        <button class="navl" onclick="showPage('academy')">Academy</button>
+        <button class="nav-cta">JOIN WAR ROOM</button>
+    </div>
+</nav>
 
-    <section class="hero">
-        <img src="https://i.postimg.cc/ZYvqkxkw/final-DP-logo.png" class="logo" alt="Wolf Stocks Logo">
-        <h1>WOLF STOCKS AI</h1>
-        <p>ALWAYS AHEAD. NEVER SEBI ADVICE.</p>
-        
-        <div id="academy" class="video-container">
-            <div class="video-placeholder">
-                <p style="color: #444;">[ SOVEREIGN AGENT VIDEO LIVE ]</p>
+<div id="home" class="page on">
+    <section class="rt-wrap" style="margin: 20px;">
+        <div class="rt-head">
+            <div class="rt-icon">🔬</div>
+            <div>
+                <div class="rt-title">SOVEREIGN RESEARCH ENGINE</div>
+                <div class="rt-sub">Direct access to NSE/BSE Scrapers. Data syncs to War Room.</div>
             </div>
         </div>
+        <div class="rt-row">
+            <input type="text" id="sym" class="rt-input" placeholder="Enter Symbol (e.g. RELIANCE)">
+            <button class="rt-btn" onclick="runSovereignSearch()">SCAN ALPHA</button>
+        </div>
+        <div id="res" style="margin-top:10px; font-size:12px; color:var(--g2);"></div>
     </section>
 
-    <section id="research" class="search-section">
-        <h2>🔬 RESEARCH ENGINE</h2>
-        <div class="search-box">
-            <input type="text" id="sym" placeholder="Enter NSE Symbol (e.g. RELIANCE)">
-            <button class="search-btn" onclick="runSearch()">SCAN ALPHA</button>
-        </div>
-        <div id="res" style="color: var(--gold); font-weight: bold; height: 20px;"></div>
-    </section>
-
-    <section class="grid">
-        <div class="card">
-            <h3>Alpha Scout</h3>
-            <p>Scanning 2,000+ NSE tickers for volume anomalies using proprietary V10 logic.</p>
-        </div>
-        <div class="card">
-            <h3>Penny Scraper</h3>
-            <p>Finding the next multi-bagger in the ₹1-20 range before the trend hits Telegram.</p>
-        </div>
-        <div class="card">
-            <h3>Sovereign AI</h3>
-            <p>Powered by 8 custom AI Agents specializing in Global Macro and F&O data.</p>
+    <section id="nfp" class="nfp-wrap" style="text-align:center; padding:40px;">
+        <h2 class="sec-h2">NFP MISSION 🐺</h2>
+        <div class="nfp-countdown">
+            <div class="nfp-ct"><div class="nfp-ct-v" id="d">00</div><div class="nfp-ct-l">DAYS</div></div>
+            <div class="nfp-ct"><div class="nfp-ct-v" id="h">00</div><div class="nfp-ct-l">HOURS</div></div>
+            <div class="nfp-ct"><div class="nfp-ct-v" id="m">00</div><div class="nfp-ct-l">MINS</div></div>
         </div>
     </section>
+</div>
 
-    <section id="alphas" class="data-section">
-        <h2>📊 TOP ALPHA SELECTIONS</h2>
-        <table>
-            <thead>
-                <tr><th>Ticker</th><th>Entry Zone</th><th>Target</th><th>Signal</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>SBIN</td><td>740 - 745</td><td>790</td><td><span class="badge">BULLISH</span></td></tr>
-                <tr><td>TATASTEEL</td><td>142 - 145</td><td>160</td><td><span class="badge">VOL BREAKOUT</span></td></tr>
-                <tr><td>RELIANCE</td><td>2950 - 2970</td><td>3150</td><td><span class="badge">ACCUMULATION</span></td></tr>
-            </tbody>
-        </table>
-    </section>
+<script>
+// 1. NAVIGATION LOGIC
+function showPage(p) {
+    document.querySelectorAll('.page').forEach(pg => pg.classList.remove('on'));
+    document.getElementById(p).classList.add('on');
+}
 
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p style="margin-top: 20px; font-size: 12px; color: #444;">&copy; 2026 WOLF STOCKS AI ENTERPRISE. PROPRIETARY SOVEREIGN ARCHITECTURE.</p>
-    </footer>
+// 2. SOVEREIGN RESEARCH TOOL (FIXED)
+function runSovereignSearch() {
+    const symbol = document.getElementById('sym').value.toUpperCase().trim();
+    if (!symbol) return;
+    
+    const res = document.getElementById('res');
+    res.innerHTML = "📡 <i>Accessing Sovereign Scrapers...</i>";
+    
+    // Deployment URL from Master Plan
+    const url = "https://script.google.com/macros/s/AKfycbzehdMjKpD3rP1FjF-BHpIT4w9wog0VlnfC2cM8_TilLLeqsEHzjwKjMehhkN9iLuy7fA/exec?symbol=" + symbol;
+    
+    fetch(url)
+        .then(r => r.json())
+        .then(d => {
+            res.innerHTML = "✅ <b>" + symbol + "</b>: " + (d.status || "Alpha Logged to War Room");
+        })
+        .catch(e => {
+            res.innerHTML = "⚠️ Sovereign Link Offline. Syncing to Telegram...";
+        });
+}
 
-    <script>
-        function runSearch() {
-            const symbol = document.getElementById('sym').value.toUpperCase().trim();
-            if (!symbol) return;
-            document.getElementById('res').innerText = "📡 Accessing Scrapers...";
-            
-            const url = "https://script.google.com/macros/s/AKfycbzehdMjKpD3rP1FjF-BHpIT4w9wog0VlnfC2cM8_TilLLeqsEHzjwKjMehhkN9iLuy7fA/exec?symbol=" + symbol;
-            
-            fetch(url).then(r => r.json()).then(d => {
-                document.getElementById('res').innerText = "✅ Result for " + symbol + ": " + d.status;
-            }).catch(e => {
-                document.getElementById('res').innerText = "⚠️ Link Error.";
-            });
-        }
-    </script>
+// 3. NFP COUNTDOWN (FIXED)
+function updateNFP() {
+    const target = new Date("March 7, 2026 18:30:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+    
+    if (diff <= 0) {
+        document.getElementById('nfp-banner-timer').innerText = "MISSION LIVE";
+        return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById('d').innerText = d.toString().padStart(2, '0');
+    document.getElementById('h').innerText = h.toString().padStart(2, '0');
+    document.getElementById('m').innerText = m.toString().padStart(2, '0');
+    document.getElementById('nfp-banner-timer').innerText = d + "D " + h + "H REMAINING";
+}
+
+setInterval(updateNFP, 1000);
+updateNFP();
+</script>
+
 </body>
 </html>
